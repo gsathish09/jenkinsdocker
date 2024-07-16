@@ -7,14 +7,15 @@ sudo yum install docker -y
 sudo systemctl start docker
 
 
-if [ -d "addressbook" ]
+if [ -d "jenkinsdocker" ]
 then
    echo "repo is cloned and exists"
-   cd addressbook
+   cd jenkinsdocker
    git pull origin feature/cicd-docker
 else
-   git clone https://github.com/preethid/addressbook.git
-     cd addressbook
+   #git clone https://github.com/preethid/addressbook.git
+   git clone https://github.com/gsathish09/jenkinsdocker.git
+   cd jenkinsdocker
    git checkout feature/cicd-docker
 fi
 
