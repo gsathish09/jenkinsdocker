@@ -13,9 +13,9 @@ pipeline {
     
     }
     environment{
-        DEV_SERVER='ec2-user@3.108.41.23'
+        DEV_SERVER='ec2-user@172.31.36.146'
         IMAGE_NAME='sathishgunasekaran/java-mvn-privaterepos:$BUILD_NUMBER'
-        DEPLOY_SERVER='ec2-user@3.108.41.23'
+        DEPLOY_SERVER='ec2-user@172.31.36.146'
     }
 
     stages {
@@ -52,12 +52,12 @@ pipeline {
            steps {
                  script{
                 sshagent(['slave2']) {
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                 echo "Dockerize the Code ${params.APPVERSION}"
                 sh "scp -o StrictHostKeyChecking=no server-script.sh ${DEV_SERVER}:/home/ec2-user"
-               sh "ssh -o StrictHostKeyChecking=no ${DEV_SERVER} bash /home/ec2-user/server-script.sh ${IMAGE_NAME}"
-               sh "ssh ${DEV_SERVER} sudo docker login -u ${USERNAME} -p ${PASSWORD}"
-               sh "ssh ${DEV_SERVER} sudo docker push ${IMAGE_NAME}"
+                sh "ssh -o StrictHostKeyChecking=no ${DEV_SERVER} bash /home/ec2-user/server-script.sh ${IMAGE_NAME}"
+                sh "ssh ${DEV_SERVER} sudo docker login -u ${USERNAME} -p ${PASSWORD}"
+                sh "ssh ${DEV_SERVER} sudo docker push ${IMAGE_NAME}"
                     }
             }
         }
