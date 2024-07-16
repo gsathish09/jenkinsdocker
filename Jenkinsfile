@@ -15,7 +15,7 @@ pipeline {
     environment{
         DEV_SERVER='ec2-user@172.31.36.146'
         IMAGE_NAME='sathishgunasekaran/java-mvn-privaterepos:$BUILD_NUMBER'
-        DEPLOY_SERVER='ec2-user@172.31.36.146'
+        DEPLOY_SERVER='ec2-user@172.31.42.92'
     }
 
     stages {
@@ -65,14 +65,14 @@ pipeline {
         }
          stage('Run the docker image') {
             agent any
-            input{
-                message "Select the version to deploy"
-                ok "Version Selected"
-                parameters{
-                    choice(name:'NEWAPP',choices:['1.1','1.2','1.3'])
-                }
+            // input{
+            //     message "Select the version to deploy"
+            //     ok "Version Selected"
+            //     parameters{
+            //         choice(name:'NEWAPP',choices:['1.1','1.2','1.3'])
+            //     }
             
-            }
+            // }
             steps {
                  script{
                 sshagent(['slave2']) {
