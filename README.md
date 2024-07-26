@@ -5,6 +5,8 @@
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100 47.4M  100 47.4M    0     0  5613k      0  0:00:08  0:00:08 --:--:-- 7486k
+
+
 [root@ip-172-31-35-224 ~]# chmod +x ./kubectl
 [root@ip-172-31-35-224 ~]# mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
 [root@ip-172-31-35-224 ~]# kubectl version --client
