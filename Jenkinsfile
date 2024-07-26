@@ -88,6 +88,15 @@ pipeline {
     }
         }
         
+        stage('RUN K8S MANIFEST'){
+            agent any
+               steps{
+                script{
+                    echo "Run the k8s manifest file"
+                    sh 'envsubst < k8s-manifests/java-mvn-app.yaml | sudo kubectl apply -f -'
+                }
+               } 
+        }
 
     }
 }
