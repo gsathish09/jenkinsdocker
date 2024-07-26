@@ -47,9 +47,12 @@ go to /etc/sudoers and add as below
 
 ## Allow root to run any commands anywhere
 root    ALL=(ALL)       ALL
+
 user1   user1=NOPASSWD: ALL
+
 Jenkins ALL=NOPASSWD: ALL
 
 
 # AFTER TESTING DELETE THE CLUSTER
+
 eksctl delete cluster --name demo-cluster --region ap-south-1
