@@ -1,3 +1,17 @@
+# STEPS TO BE PERFORMED
+
+1. EKS Cluster created
+
+2. will connect from Jenkins server ( aws eks update .....)
+
+3. docker-key secret created from Jenkins ( to pull the private docker image)
+
+4. run the pipeline -manifest
+
+
+
+
+
 
 # INSTALLING KUBECTL ON JENKINS SERVER
 
