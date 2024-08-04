@@ -65,7 +65,7 @@ resource "aws_instance" "webserver" {
     subnet_id = var.subnet_id
     vpc_security_group_ids = [aws_security_group.mywebsecurity.id]
     key_name="bitbucketegressip"
-    user_data=file("server-script.sh")
+    user_data=file("script.sh")
     tags = {
     Name = "${var.env}-mywebserver"
   }  

@@ -2,6 +2,7 @@ pipeline {
     agent none
 
     tools{
+        jdk 'myjava' // in global tool configuration of jenkins we have installed java of the specific version
         maven 'mymaven'
     }
 
@@ -100,8 +101,8 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                 //echo "Dockerize the Code ${params.APPVERSION}"
                 //sh "scp -o StrictHostKeyChecking=no server-script.sh ${DEV_SERVER}:/home/ec2-user"
-                sh "ssh -o StrictHostKeyChecking=no ec2-user@${EC2_PUBLIC_IP} sudo docker login -u ${USERNAME} -p ${PASSWORD}"
-                sh "ssh ec2-user@${EC2_PUBLIC_IP} sudo docker run -itd -p 8080:8080 ${IMAGE_NAME}"
+                sh "ssh -o StrictHostKeyChecking=no ec2-user@${EC2_PUBLIC_IP} docker login -u ${USERNAME} -p ${PASSWORD}"
+                sh "ssh ec2-user@${EC2_PUBLIC_IP} docker run -itd -p 8080:8080 ${IMAGE_NAME}"
                 //sh "ssh ${DEV_SERVER} sudo docker push ${IMAGE_NAME}"
                     }
             }
