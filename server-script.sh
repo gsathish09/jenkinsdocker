@@ -1,22 +1,5 @@
 #! /bin/bash
-
-sudo yum install git -y
-# sudo yum insatll java-1.8.0-openjdk-devel -y
-# sudo yum install maven -y
-sudo yum install docker -y
+sudo yum update -y && sudo yum install -y docker
 sudo systemctl start docker
-
-
-if [ -d "jenkinsdocker" ]
-then
-   echo "repo is cloned and exists"
-   cd jenkinsdocker
-   git pull origin feature/cicd-docker
-else
-   #git clone https://github.com/preethid/addressbook.git
-   git clone https://github.com/gsathish09/jenkinsdocker.git
-   cd jenkinsdocker
-   git checkout feature/cicd-docker
-fi
-
-sudo docker build -t $1 .
+sudo usermod -aG docker ec2-user #add the ec2-user into docker group so that ec2-user can run docker command
+sudo docker run -itd -p 8080:80 nginx
